@@ -1,0 +1,38 @@
+<%- include('../../layouts/front/header')%>
+    <%- include('../../layouts/front/nav')%>
+
+
+        <main id="main">
+
+            <section class="single-post-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 post-content" data-aos="fade-up">
+
+                            <!-- ======= Single Post Content ======= -->
+
+
+                            <div class="single-post">
+                                    <div class="post-meta"><span class="date">
+                                        </span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+
+                                    <h1 class="mb-5">
+                                        <%= banner_details.heading%>
+                                    </h1>
+
+                                    <figure class="my-4">
+                                        <img src="/admin/uploads/<%= banner_details.image%>" alt="blog-img" width="700px"
+                                            height="auto">
+                                    </figure>
+                                    
+                                    <p><%- banner_details.description%></p>
+                            </div>
+                            <!-- End Single Post Content -->
+                        </div>
+
+                    </div>
+            </section>
+        </main><!-- End #main -->
+
+        <!-- ======= Footer ======= -->
+        <%- include('../../layouts/front/footer')%>

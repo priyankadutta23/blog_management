@@ -1,0 +1,98 @@
+<%- include('../../layouts/front/header')%>
+    <%- include('../../layouts/front/nav')%>
+
+        <main id="main">
+            <section id="blog" class="contact mb-6"
+                style="background-image: url(https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-size: cover;">
+                <div class="container bg-light" data-aos="fade-up">
+
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb-5">
+                            <h1>Make Your Blog</h1>
+                        </div>
+                    </div>
+                    <% if(success.length>0){ %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>Congrats!</strong>
+                          <%= success%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+      
+                        <%} else if(error.length>0){ %>
+                          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>sorry!</strong>
+                            <%= error%>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <% } %>
+
+
+                    <form method="post" action="/front-user/blog/create-blog" enctype="multipart/form-data">
+                        <div class="row justify-content-between mb-4">
+                            <div class="form-group">
+                                <label>Category</label>
+
+                                <select class="form-control" name="category_id" id="category_id" required>
+                                    <option selected disabled>Choose Category:</option>
+                                    <% category_details.map((data)=>{%>
+
+                                        <option value="<%= data._id%>">
+                                            <%= data.category_name%>
+                                        </option>
+                                        <%})%>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row justify-content-between mb-4 ">
+                            <div class="form-group  ">
+                                <label>Heading</label>
+                                <input type="text" id="heading" name="heading" class="form-control" placeholder="Heading" required>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row justify-content-between mb-4">
+                            <div class="form-group">
+                                <label>Blog Description</label>
+                                <textarea class=" form-control ckeditor" type="text" id="description" name="description"
+                                    rows="5" cols="10" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-between mb-4">
+                            <div class="form-group col-sm-12">
+                                <label>Image</label>
+                                <input type="file" id="image" name="image" class="form-control" 
+                                    accept="image/*" required>
+                            </div>
+
+                        </div>
+                        <br>
+                        <button type="submit" class=" form-control btn btn-dark">Create</button>
+
+                    </form>
+
+
+
+
+                </div>
+            </section>
+
+        </main><!-- End #main -->
+
+        <script src="/admin/ckeditor/ckeditor.js"></script>
+
+        <script>
+            CKEDITOR.replace('description');
+
+        </script>
+        <!-- ======= Footer ======= -->
+        <%- include('../../layouts/front/footer')%>

@@ -1,0 +1,116 @@
+<%- include('../../layouts/admin/header')%>
+    <%- include('../../layouts/admin/side')%>
+        <%- include('../../layouts/admin/nav')%>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Contact Management</h1>
+              
+                <% if(success.length) {%>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Hey</strong>
+                        <%= success%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <% } else if(error.length) {%>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Hey</strong>
+                            <%= error%>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <% } %>
+
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h1 class="m-0 font-weight-bold text-primary"
+                                        style="font-size: 25px; font-family: 'Times New Roman', Times, serif;">Contact
+                                        List
+                                    </h1>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">DATE</th>
+                                                    <th scope="col">NAME</th>
+                                                    <th scope="col">EMAIL</th>
+                                                    <th scope="col">SUBJECT</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">DATE</th>
+                                                    <th scope="col">NAME</th>
+                                                    <th scope="col">EMAIL</th>
+                                                    <th scope="col">SUBJECT</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <% all_contact.map((data)=> { %>
+
+                                                    <tr>
+                                                        <td>
+                                                            <%= data.createdAt.toLocaleString()%>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%= data.name%>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.email%>
+                                                        </td>
+
+                                                        <td>
+                                                            <%= data.subject%>
+                                                        </td>
+
+
+                                                        <!-- edit delete -->
+                                                        <td>
+                                                            <div class="dropdown">
+
+                                                                <a type="button" id="dropdownMenuButton"
+                                                                    data-toggle="dropdown"><span
+                                                                        class="bi bi-three-dots-vertical"></span></a>
+
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    <a class="dropdown-item"
+                                                                        href="/admin/contact/delete-contact/<%= data._id %>">Delete</a>
+                                                                    <a class="dropdown-item"
+                                                                        href="/admin/contact/view-contact/<%= data._id %>">View</a>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <%})%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <%- include('../../layouts/admin/footer')%>

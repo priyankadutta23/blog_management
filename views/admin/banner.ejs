@@ -1,0 +1,122 @@
+<%- include('../../layouts/admin/header')%>
+<%- include('../../layouts/admin/side')%>
+<%- include('../../layouts/admin/nav')%>
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Banner Management</h1>
+                
+
+                <% if(success.length) {%>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Hey</strong>
+                        <%= success%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <% } else if(error.length) {%>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Hey</strong>
+                            <%= error%>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <% } %>
+
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h1 class="m-0 font-weight-bold text-primary" style="font-size: 25px; font-family: 'Times New Roman', Times, serif;">Banner List
+                                        <span>
+                                            <a href="/admin/banner/add-banner" class="btn btn-primary" style="margin-left: 800px;">Add Banner</a>
+
+                                        </span></h1>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">IMAGE</th>
+                                                    <th scope="col">HEADING</th>
+                                                    <th scope="col">STATUS</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">IMAGE</th>
+                                                    <th scope="col">HEADING</th>
+                                                    <th scope="col">STATUS</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <% all_banner.map((data)=> { %>
+
+                                                    <tr>
+                                                        <td>
+                                                            <img src="/admin/uploads/<%= data.image%>" alt="" height="50px" width="80px">
+                                                        </td>
+                                                       
+
+                                            <td>
+                                                <%= data.heading%>
+                                            </td>
+                                            
+                                            <!-- status -->
+                                            <% if(data.status === 'Active') {%>
+                                                            <td><a href="/admin/banner/status-banner/<%= data._id %>"
+                                                                    class="btn btn-success">Active</a></td>
+                                                            <% } else {%>
+                                                                <td><a href="/admin/banner/status-banner/<%= data._id %>"
+                                                                        class="btn btn-warning">Inactive</a></td>
+                                                                <% } %>
+
+                                                                    <!-- edit delete -->
+                                                                    <td>
+                                                                        <div class="dropdown">
+
+                                                                            <a type="button" id="dropdownMenuButton"
+                                                                                data-toggle="dropdown"><span
+                                                                                    class="bi bi-three-dots-vertical"></span></a>
+
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton">
+
+                                                                                <a class="dropdown-item"
+                                                                                href="/admin/banner/edit-banner/<%= data._id %>">Edit</a>
+                                                                                
+                                                                                <a class="dropdown-item"
+                                                                                    href="/admin/banner/delete-banner/<%= data._id %>">Delete</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="/admin/banner/view-banner/<%= data._id %>">View</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        
+
+                                                                    </td>
+
+
+                                                    </tr>
+                                                    <%})%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <%- include('../../layouts/admin/footer')%>

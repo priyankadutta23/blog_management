@@ -1,0 +1,82 @@
+<%- include('../../layouts/admin/header')%>
+<%- include('../../layouts/admin/side')%>
+<%- include('../../layouts/admin/nav')%>
+
+       
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+
+                    <h3 class="fw-normal mb-4 text-gray-800">Update Details</h3>
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            
+
+                            <% if(success.length) {%>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Hey</strong>
+                                    <%= success%>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <% } else if(error.length) {%>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Hey</strong>
+                                        <%= error%>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                    </div>
+                                    <% } %>
+
+                                        <form method="post" action="/admin/profile-update" enctype="multipart/form-data">
+                                            <div class="form-group text-gray-800">
+                                                <label> Enter First Name </label>
+                                                <input type="text" class="form-control" id="first_name"
+                                                    name="first_name" value="<%= response.first_name %>"
+                                                    placeholder="First Name">
+                                            </div>
+
+                                            <div class="form-group text-gray-800">
+                                                <label> Enter Last Name </label>
+                                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                                    value="<%= response.last_name %>" placeholder="Last Name">
+                                            </div>
+
+                                            <div class="form-group text-gray-800">
+                                                <label>Email </label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    value="<%= response.email%>" placeholder="Email Address.." readonly>
+                                            </div>
+
+                                            <div class="form-group text-gray-800">
+                                                <label>Image </label>
+                                                <input type="file" class="form-control" id="image" name="image"
+                                                 accept="image/*">
+                                            </div>
+                                            <div class="form-group">
+                                                <% if(!_.isEmpty(response.image)){%>
+                                                    <img src="/admin/uploads/<%= response.image %>" height="100px"
+                                                        width="100px">
+                                                    <%}%>
+                                            </div>
+                                            <input type="hidden" name="id" value="<%= response._id %>">
+                                            <a href="/admin/dashboard"  class="btn btn-danger">Cancel</a>
+
+                                            <button type="submit" class="btn btn-primary"> Update </button>
+                                        </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <%- include('../../layouts/admin/footer')%>

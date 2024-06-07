@@ -1,0 +1,27 @@
+<%- include('../../layouts/admin/header')%>
+<%- include('../../layouts/admin/side')%>
+<%- include('../../layouts/admin/nav')%>
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800"><span>
+                <a href="/admin/contact" class="bt-lg text-gray-800" style="text-decoration: none; font-size: 30px;"> &larr;</a>
+
+                </span> View Contact</h1>
+
+
+                <p><%= contact_details.createdAt.toLocaleString()%></p>
+                <p>From- <%= contact_details.email %></p>
+                
+                <h4>Subject- <%= contact_details.subject %></h4>
+                <h5> <%= contact_details.message %></h5>
+
+            </div>
+            <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <%- include('../../layouts/admin/footer')%>

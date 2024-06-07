@@ -1,0 +1,25 @@
+<%- include('../../layouts/admin/header')%>
+<%- include('../../layouts/admin/side')%>
+<%- include('../../layouts/admin/nav')%>
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800"><span>
+                <a href="/admin/banner" class="bt-lg text-gray-800" style="text-decoration: none; font-size: 30px;"> &larr;</a>
+
+                </span> View Banner</h1>
+
+
+                <h4><%= banner_details.heading %></h4>
+                <img src="/admin/uploads/<%= banner_details.image%>" alt="no img" height="200px" width="300px">
+                <p> <%- banner_details.description %></p>
+
+            </div>
+            <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <%- include('../../layouts/admin/footer')%>

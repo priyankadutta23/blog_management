@@ -1,0 +1,91 @@
+<%- include('../../layouts/front/header')%>
+    <%- include('../../layouts/front/nav')%>
+
+        <main id="main">
+            <section id="contact" class="contact mb-5">
+                <div class="container" data-aos="fade-up">
+
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb-5">
+                            <h1>Profile Update</h1>
+                        </div>
+                    </div>
+
+                    <div class="form mt-5">
+                        <% if(success.length>0){ %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Congrats!</strong>
+                                <%= success%>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+
+                            <%} else if(error.length>0){ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>sorry!</strong>
+                                    <%= error%>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <% } %>
+                                    <form action="/front-user/edit-profile-update" method="post" role="form"
+                                         enctype="multipart/form-data">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <input type="text" name="first_name" class="form-control"
+                                                        id="first_name" placeholder="Your First Name" value="<%= response.first_name%>" required>
+                                                </div>
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <input type="text" name="last_name" class="form-control"
+                                                        id="last_name" placeholder="Your Last Name" value="<%= response.last_name%>" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <input type="email" name="email" class="form-control" id="email"
+                                                        placeholder="Your email" value="<%= response.email%>" required>
+                                                </div>
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <input type="text" name="contact" class="form-control" id="contact"
+                                                        placeholder="Your contact" value="<%= response.contact%>" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="form-group mb-4 col-md-6">
+                                                    <input type="file" class="form-control" id="image" name="image" value="<%= response.image%>"
+                                                        accept="image/*">
+
+                                                </div>
+                                                <div class="form-group mb-4 col-md-6">
+                                                <% if(!_.isEmpty(response.image)){%>
+
+                                                    <img src="/front/uploads/<%= response.image%>" height="100px" width="100px">
+                                                    <%}%>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="id" value="<%= response._id %>">
+
+
+                                        <div class="text-center">
+                                            <a href="/" class="btn btn-lg btn-light">Cancel</a>
+
+                                            <button type="submit" class="btn btn-lg btn-dark">Update profile</button>
+                                        </div>
+                                    </form>
+                    </div>
+                    <!-- End Contact Form -->
+
+                </div>
+            </section>
+
+        </main><!-- End #main -->
+
+        <!-- ======= Footer ======= -->
+        <%- include('../../layouts/front/footer')%>

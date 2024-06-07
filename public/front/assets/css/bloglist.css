@@ -1,0 +1,34 @@
+html,
+body,
+.intro {
+    height: 100%;
+}
+
+table td,
+table th {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+thead th,
+tbody th {
+    color: rgb(112, 107, 107);
+}
+
+tbody td {
+    font-weight: 500;
+    color: rgb(131, 126, 126);
+}
+
+.card {
+    border-radius: .5rem;
+}
+h1{
+    color: white;
+    text-align: center;
+    margin-top: -150px !important;
+    padding-top: 100px !important;
+    
+    
+}

@@ -1,0 +1,133 @@
+<%- include('../../layouts/admin/header')%>
+<%- include('../../layouts/admin/side')%>
+<%- include('../../layouts/admin/nav')%>
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">FAQ Management</h1>
+                
+
+                <% if(success.length) {%>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Hey</strong>
+                        <%= success%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <% } else if(error.length) {%>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Hey</strong>
+                            <%= error%>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <% } %>
+
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h1 class="m-0 font-weight-bold text-primary" style="font-size: 25px; font-family: 'Times New Roman', Times, serif;">FAQ List
+                                        <span>
+                                            <a href="/admin/faq/add-faq" class="btn btn-primary" style="margin-left: 840px;">ADD FAQ</a>
+
+                                        </span></h1>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">QUESTION</th>
+                                                    <th scope="col">ANSWER</th>
+                                                    <th scope="col">STATUS</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">QUESTION</th>
+                                                    <th scope="col">ANSWER</th>
+                                                    <th scope="col">STATUS</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <% all_faq.map((data)=> { %>
+
+                                                    <tr>
+                                                        <td>
+                                                            <%= data.question%>
+                                                        </td>
+                                                        <% var arr=data.answer.split(' ')%>
+                                            <% var Word_length=arr.length %>
+                                            <% var final_text="" %>
+                                            <% var word_limit=10 %>
+
+                                            <% if(Word_length>word_limit){ %>
+                                                <% for(let i=0;i < word_limit;i++){ %>
+                                                    <% final_text=final_text+" "+ arr[i] %>
+                                                <% } %>
+                                                <% var text= final_text+"..." %>
+                                            <% }else{ %>
+                                                <% var text= data.answer %>
+                                            <% } %>
+
+                                            <td>
+                                                <%- text%>
+                                            </td>
+                                            
+                                            <!-- status -->
+                                            <% if(data.status === 'Active') {%>
+                                                            <td><a href="/admin/faq/status-faq/<%= data._id %>"
+                                                                    class="btn btn-success">Active</a></td>
+                                                            <% } else {%>
+                                                                <td><a href="/admin/faq/status-faq/<%= data._id %>"
+                                                                        class="btn btn-warning">Inactive</a></td>
+                                                                <% } %>
+
+                                                                    <!-- edit delete -->
+                                                                    <td>
+                                                                        <div class="dropdown">
+
+                                                                            <a type="button" id="dropdownMenuButton"
+                                                                                data-toggle="dropdown"><span
+                                                                                    class="bi bi-three-dots-vertical"></span></a>
+
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton">
+
+                                                                                <a class="dropdown-item"
+                                                                                    href="/admin/faq/edit-faq/<%= data._id %>">Edit</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="/admin/faq/delete-faq/<%= data._id %>">Delete</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="/admin/faq/view-faq/<%= data._id %>">View</a>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </td>
+                                                                    <!-- <td><a href="/faq/edit-faq/<%= data._id %>" class="fas fa-info-circle btn-lg"></a></td> -->
+                                                                    <!-- <td><a href="/faq/delete-faq/<%= data._id %>" class="btn-circle fas fa-trash btn-danger"></a></td> -->
+
+
+                                                    </tr>
+                                                    <%})%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <%- include('../../layouts/admin/footer')%>

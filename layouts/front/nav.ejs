@@ -1,0 +1,81 @@
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center">
+        <h1>ZenBlog</h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="dropdown"><a class="isDisabled" href="" aria-disabled="true"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <% category_details.map((data)=>{%>
+              <li><a href="/category-blog/<%= data._id%>"><%= data.category_name%></a></li><p></p>
+             
+              <%})%>
+            </ul>
+          </li>
+
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <% if(front_user){%>
+            <li><a href="/front-user/blog/blog-list">My Post</a></li>
+
+            <li><a href="/front-user/blog">Blog Post</a></li>
+            <%}%>
+
+             
+        </ul>
+      </nav>
+      <!-- .navbar -->
+
+      <div class="position-relative">
+          <% if(front_user){%>
+
+            <!-- <div class="dropdown"> -->
+          
+        
+              <a data-bs-toggle="dropdown" aria-expanded="false">
+                
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <%= front_user.full_name%>  <img class="img-profile rounded-circle" src="/front/uploads/<%= front_user.image%>" width="40px"
+                  height="40">
+              </span>
+            </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/front-user/logout" class="mx-2">logout</a></li>
+                <li><a class="dropdown-item" href="/front-user/change-password">Password Change</a></li>
+                <li><a class="dropdown-item" href="/front-user/edit-profile">Profile</a></li>
+              </ul>
+            <!-- </div> -->
+
+        <%}else{%>
+        <a href="/front-user" class="mx-2"><i class="bi bi-person-fill"></i></a>
+
+      <%}%>
+    
+        <a href="" class="mx-2 js-search-open">
+          <!-- <span class="bi-search"></span> -->
+        </a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+        <!-- ======= Search Form ======= -->
+        <div class="search-form-wrap js-search-form-wrap">
+          <form action="/search-result" class="search-form">
+            <span class="icon bi-search"></span>
+            <input type="text" placeholder="Search" class="form-control">
+            <button class="btn js-search-close"><span class="bi-x"></span></button>
+          </form>
+        </div>
+        <!-- End Search Form -->
+
+      </div>
+
+    </div>
+
+  </header><!-- End Header -->
